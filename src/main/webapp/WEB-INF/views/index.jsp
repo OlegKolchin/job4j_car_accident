@@ -11,19 +11,27 @@
   <title>Accident</title>
 </head>
 <body>
+<h3 style="text-align: center" >Accidents</h3>
+<p class="lead" style="text-align: center">
+  This is a lead paragraph. It stands out from regular paragraphs.
+</p>
 <div class="container" width="70%">
     <table class="table">
       <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Username</th>
+        <th scope="col">Name</th>
+        <th scope="col">Text</th>
+        <th scope="col">Address</th>
       </tr>
       </thead>
       <tbody>
-      <c:forEach var="user" items="${users}">
+      <c:forEach var="accident" items="${accidents}">
       <tr>
         <th scope="row"></th>
-        <td>${user}</td>
+        <td>${accident.name}</td>
+        <td>${accident.text}</td>
+        <td>${accident.address}</td>
       </tr>
       </c:forEach>
       </tbody>

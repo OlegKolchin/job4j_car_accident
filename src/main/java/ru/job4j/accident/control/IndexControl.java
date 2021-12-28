@@ -3,14 +3,18 @@ package ru.job4j.accident.control;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import java.util.List;
+import ru.job4j.accident.repository.AccidentMem;
+
+import java.util.ArrayList;
+
 
 @Controller
 public class IndexControl {
     @GetMapping("/")
     public String index(Model model) {
-        List<String> list = List.of("Value1", "Value2", "Value3");
-        model.addAttribute("users", list);
+        AccidentMem mem = new AccidentMem();
+        mem.init();
+        model.addAttribute("accidents", new ArrayList<>(mem.getAccidents().values()));
         return "index";
     }
 }
