@@ -7,6 +7,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <head>
   <title>Accident</title>
 </head>
@@ -20,15 +21,15 @@
       <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Text</th>
-        <th scope="col">Address</th>
+        <th scope="col">Название</th>
+        <th scope="col">Описание</th>
+        <th scope="col">Адрес</th>
       </tr>
       </thead>
       <tbody>
       <c:forEach var="accident" items="${accidents}">
       <tr>
-        <th scope="row"></th>
+        <th scope="row"><a href="<c:url value='/edit?id=${accident.id}'/>"><i class="fa fa-edit mr-3"></i></a></th>
         <td>${accident.name}</td>
         <td>${accident.text}</td>
         <td>${accident.address}</td>
@@ -36,6 +37,7 @@
       </c:forEach>
       </tbody>
     </table>
+  <a href="<c:url value='/create'/>">Добавить инцидент</a>
 </div>
 </body>
 </html>

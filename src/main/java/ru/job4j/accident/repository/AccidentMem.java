@@ -5,7 +5,6 @@ import ru.job4j.accident.model.Accident;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 
 @Repository
 public class AccidentMem {
@@ -19,7 +18,7 @@ public class AccidentMem {
         this.accidents = accidents;
     }
 
-    public void addAccident(int i, Accident accident) {
-        accidents.put(i, accident);
+    public void create(Accident accident) {
+        accidents.put(accident.getId(), accident);
     }
 }
