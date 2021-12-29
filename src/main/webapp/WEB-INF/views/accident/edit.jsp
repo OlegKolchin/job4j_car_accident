@@ -8,15 +8,14 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 <body>
-<form  action="<c:url value='/save'/>" method='POST'>
+<form  action="<c:url value='/save?id=${accident.id}'/>" method='POST'>
     <p></p>
     <div class="container" width="70%">
         <div class="input-group mb-3">
             <button type="submit" class="btn btn-primary" id="button-addon1">Сохранить</button>
-            <input type="number" class="form-control" name="id" value="<%=request.getParameter("id")%>" aria-describedby="button-addon1" hidden>
-            <input type="text" class="form-control" placeholder="Название" aria-describedby="button-addon1" name="name">
-            <input type="text" class="form-control" placeholder="Описание" aria-describedby="button-addon1" name="text">
-            <input type="text" class="form-control" placeholder="Адрес" aria-describedby="button-addon1" name="address">
+            <input type="text" class="form-control" aria-describedby="button-addon1" name="name" value="${accident.name}">
+            <input type="text" class="form-control" aria-describedby="button-addon1" name="text" value="${accident.text}">
+            <input type="text" class="form-control" aria-describedby="button-addon1" name="address" value="${accident.address}">
         </div>
         <a href="<c:url value='/'/>">На главную</a>
     </div>>

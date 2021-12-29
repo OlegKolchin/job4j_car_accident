@@ -21,4 +21,8 @@ public class AccidentMem {
     public void create(Accident accident) {
         accidents.put(accident.getId(), accident);
     }
+
+    public Accident findById(int id) {
+        return accidents.get(id);
+    }
 }
