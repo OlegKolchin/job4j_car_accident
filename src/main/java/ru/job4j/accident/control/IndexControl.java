@@ -13,15 +13,12 @@ public class IndexControl {
     private AccidentMem store;
 
     public IndexControl(AccidentMem store) {
-        for (int i = 1; i <= 5; i++) {
-            store.create(new Accident(i, "Accident", "Text", "Address"));
-        }
         this.store = store;
     }
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("accidents", new AccidentService().getAccidents(store));
+        model.addAttribute("accidents", new AccidentService(store).getAccidents());
         return "index";
     }
 }

@@ -8,7 +8,14 @@ import java.util.HashMap;
 
 @Repository
 public class AccidentMem {
-    private HashMap<Integer, Accident> accidents = new HashMap<>();
+    private HashMap<Integer, Accident> accidents;
+
+    public AccidentMem(HashMap<Integer, Accident> accidents) {
+        for (int i = 1; i <= 5; i++) {
+            accidents.put(i, new Accident(i, "Accident", "Text", "Address"));
+        }
+        this.accidents = accidents;
+    }
 
     public Collection<Accident> getAccidents() {
         return accidents.values();
