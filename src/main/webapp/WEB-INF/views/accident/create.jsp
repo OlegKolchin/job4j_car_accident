@@ -22,6 +22,11 @@
                     <option value="${type.id}">${type.name}</option>
                 </c:forEach>
             </select>
+            <select class="form-select" multiple aria-label="multiple select example" size="2" name="rIds">
+                <c:forEach var="rule" items="${rules}">
+                    <option value="${rule.id}">${rule.name}</option>
+                </c:forEach>
+            </select>
         </div>
         <a href="<c:url value='/'/>">На главную</a>
     </div>

@@ -25,6 +25,7 @@
         <th scope="col">Описание</th>
         <th scope="col">Адрес</th>
         <th scope="col">Категория</th>
+        <th scope="col">Статья</th>
       </tr>
       </thead>
       <tbody>
@@ -35,6 +36,9 @@
         <td>${accident.text}</td>
         <td>${accident.address}</td>
         <td>${accident.type.name}</td>
+        <td>
+          <c:forEach var="rule" items="${accident.rules}">${rule.name}<br></c:forEach>
+        </td>
       </tr>
       </c:forEach>
       </tbody>

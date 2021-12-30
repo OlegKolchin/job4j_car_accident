@@ -3,9 +3,10 @@ package ru.job4j.accident.repository;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
+import ru.job4j.accident.model.Rule;
 
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
+import java.util.stream.Stream;
 
 @Repository
 public class AccidentMem {
@@ -13,11 +14,14 @@ public class AccidentMem {
 
     private HashMap<Integer, AccidentType> types = new HashMap<>();
 
+    private Set<Rule> rules = new HashSet<>();
+
     public AccidentMem(HashMap<Integer, Accident> accidents) {
+        initRules();
         initTypes();
         for (int i = 1; i <= 5; i++) {
             accidents.put(i, new Accident(i, "Accident", "Text",
-                    "Address", getTypeById(1)));
+                    "Address", getTypeById(1), rules));
         }
         this.accidents = accidents;
     }
@@ -34,6 +38,10 @@ public class AccidentMem {
         return types.values();
     }
 
+    public Set<Rule> getRules() {
+        return rules;
+    }
+
     public AccidentType findTypeById(int id) {
         return types.get(id);
     }
@@ -43,6 +51,13 @@ public class AccidentMem {
         types.put(2, AccidentType.of(2, "Машина и человек"));
         types.put(3, AccidentType.of(3, "Машина и велосипед"));
     }
+
+    private void initRules() {
+        rules.add(Rule.of(1, "Статья. 1"));
+        rules.add(Rule.of(2, "Статья. 2"));
+        rules.add(Rule.of(3, "Статья. 3"));
+    }
+
 
     public void create(Accident accident) {
         accidents.put(accident.getId(), accident);
@@ -58,5 +73,15 @@ public class AccidentMem {
 
     public AccidentType getTypeById(int id) {
         return types.get(id);
+    }
+
+    private Rule findRuleById(int id) {
+        return rules.stream().filter(rule -> rule.getId() == id).findFirst().get();
+    }
+
+    public Set<Rule> findRules(String[] ids) {
+        Set<Rule> rules = new HashSet<>();
+        Stream.of(ids).mapToInt(Integer::parseInt).forEach(id -> rules.add(findRuleById(id)));
+        return rules;
     }
 }
