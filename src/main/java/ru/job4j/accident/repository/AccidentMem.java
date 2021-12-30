@@ -11,9 +11,13 @@ import java.util.HashMap;
 public class AccidentMem {
     private HashMap<Integer, Accident> accidents;
 
+    private HashMap<Integer, AccidentType> types = new HashMap<>();
+
     public AccidentMem(HashMap<Integer, Accident> accidents) {
+        initTypes();
         for (int i = 1; i <= 5; i++) {
-            accidents.put(i, new Accident(i, "Accident", "Text", "Address", new AccidentType()));
+            accidents.put(i, new Accident(i, "Accident", "Text",
+                    "Address", getTypeById(1)));
         }
         this.accidents = accidents;
     }
@@ -26,11 +30,33 @@ public class AccidentMem {
         this.accidents = accidents;
     }
 
+    public Collection<AccidentType> getTypes() {
+        return types.values();
+    }
+
+    public AccidentType findTypeById(int id) {
+        return types.get(id);
+    }
+
+    private void initTypes() {
+        types.put(1, AccidentType.of(1, "Две машины"));
+        types.put(2, AccidentType.of(2, "Машина и человек"));
+        types.put(3, AccidentType.of(3, "Машина и велосипед"));
+    }
+
     public void create(Accident accident) {
         accidents.put(accident.getId(), accident);
     }
 
     public Accident findById(int id) {
         return accidents.get(id);
+    }
+
+    public void createType(AccidentType type) {
+        types.put(type.getId(), type);
+    }
+
+    public AccidentType getTypeById(int id) {
+        return types.get(id);
     }
 }

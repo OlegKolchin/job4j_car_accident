@@ -17,6 +17,11 @@
             <input type="text" class="form-control" placeholder="Название" aria-describedby="button-addon1" name="name">
             <input type="text" class="form-control" placeholder="Описание" aria-describedby="button-addon1" name="text">
             <input type="text" class="form-control" placeholder="Адрес" aria-describedby="button-addon1" name="address">
+            <select class="form-select" aria-label="Default select example" name="type_id">
+                <c:forEach var="type" items="${types}">
+                    <option value="${type.id}">${type.name}</option>
+                </c:forEach>
+            </select>
         </div>
         <a href="<c:url value='/'/>">На главную</a>
     </div>
