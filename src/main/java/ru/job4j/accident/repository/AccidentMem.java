@@ -10,28 +10,23 @@ import java.util.stream.Stream;
 
 @Repository
 public class AccidentMem {
-    private HashMap<Integer, Accident> accidents;
+    private HashMap<Integer, Accident> accidents = new HashMap<>();
 
     private HashMap<Integer, AccidentType> types = new HashMap<>();
 
     private Set<Rule> rules = new HashSet<>();
 
-    public AccidentMem(HashMap<Integer, Accident> accidents) {
+    public AccidentMem() {
         initRules();
         initTypes();
         for (int i = 1; i <= 5; i++) {
             accidents.put(i, new Accident(i, "Accident", "Text",
                     "Address", getTypeById(1), rules));
         }
-        this.accidents = accidents;
     }
 
     public Collection<Accident> getAccidents() {
         return accidents.values();
-    }
-
-    public void setAccidents(HashMap<Integer, Accident> accidents) {
-        this.accidents = accidents;
     }
 
     public Collection<AccidentType> getTypes() {
