@@ -14,7 +14,7 @@
         <div class="input-group mb-3">
             <button type="submit" class="btn btn-primary" id="button-addon1">Сохранить</button>
             <input type="text" class="form-control" aria-describedby="button-addon1" name="name" value="${accident.name}">
-            <input type="text" class="form-control" aria-describedby="button-addon1" name="text" value="${accident.text}">
+            <input type="text" class="form-control" aria-describedby="button-addon1" name="description" value="${accident.description}">
             <input type="text" class="form-control" aria-describedby="button-addon1" name="address" value="${accident.address}">
             <select class="form-select" aria-label="Default select example" name="type_id">
                 <c:forEach var="type" items="${types}">

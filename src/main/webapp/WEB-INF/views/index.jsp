@@ -33,7 +33,7 @@
       <tr>
         <th scope="row"><a href="<c:url value='/edit?id=${accident.id}'/>"><i class="fa fa-edit mr-3"></i></a></th>
         <td>${accident.name}</td>
-        <td>${accident.text}</td>
+        <td>${accident.description}</td>
         <td>${accident.address}</td>
         <td>${accident.type.name}</td>
         <td>

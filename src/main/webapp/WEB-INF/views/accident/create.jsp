@@ -13,9 +13,8 @@
     <div class="container" width="70%">
         <div class="input-group mb-3">
             <button type="submit" class="btn btn-primary" id="button-addon1">Сохранить</button>
-            <input type="number" class="form-control" name="id" aria-describedby="button-addon1" placeholder="id">
             <input type="text" class="form-control" placeholder="Название" aria-describedby="button-addon1" name="name">
-            <input type="text" class="form-control" placeholder="Описание" aria-describedby="button-addon1" name="text">
+            <input type="text" class="form-control" placeholder="Описание" aria-describedby="button-addon1" name="description">
             <input type="text" class="form-control" placeholder="Адрес" aria-describedby="button-addon1" name="address">
             <select class="form-select" aria-label="Default select example" name="type_id">
                 <c:forEach var="type" items="${types}">

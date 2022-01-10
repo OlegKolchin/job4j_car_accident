@@ -6,18 +6,21 @@ import java.util.Set;
 public class Accident {
     private int id;
     private String name;
-    private String text;
+    private String description;
     private String address;
     private AccidentType type;
     private Set<Rule> rules;
 
-    public Accident(int id, String name, String text, String address, AccidentType type, Set<Rule> rules) {
+    public Accident(int id, String name, String description, String address, AccidentType type, Set<Rule> rules) {
         this.id = id;
         this.name = name;
-        this.text = text;
+        this.description = description;
         this.address = address;
         this.type = type;
         this.rules = rules;
+    }
+
+    public Accident() {
     }
 
     public int getId() {
@@ -36,12 +39,12 @@ public class Accident {
         this.name = name;
     }
 
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return description;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getAddress() {
