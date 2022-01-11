@@ -15,11 +15,11 @@ public class Accident {
     private String description;
     private String address;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "accident_type_id")
     private AccidentType type;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Rule> rules;
 
     public Accident(int id, String name, String description, String address, AccidentType type, Set<Rule> rules) {

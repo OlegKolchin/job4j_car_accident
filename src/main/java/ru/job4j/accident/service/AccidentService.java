@@ -4,45 +4,60 @@ import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
-import ru.job4j.accident.repository.Store;
-
-import java.util.Collection;
-import java.util.Set;
+import ru.job4j.accident.repository.AccidentRepository;
+import ru.job4j.accident.repository.AccidentTypeRepository;
+import ru.job4j.accident.repository.RuleRepository;
+import java.util.*;
+import java.util.stream.Stream;
 
 @Service
 public class AccidentService {
-    private Store store;
 
-    public AccidentService(Store store) {
-        this.store = store;
+    private AccidentRepository repository;
+    private RuleRepository ruleRepository;
+    private AccidentTypeRepository accidentTypeRepository;
+
+    public AccidentService(AccidentRepository repository, RuleRepository ruleRepository, AccidentTypeRepository accidentTypeRepository) {
+        this.repository = repository;
+        this.ruleRepository = ruleRepository;
+        this.accidentTypeRepository = accidentTypeRepository;
     }
 
     public Accident save(Accident accident) {
-        return store.save(accident);
+        repository.save(accident);
+        return accident;
     }
 
     public Collection<Accident> getAccidents() {
-        return store.getAllAccidents();
+        List<Accident> rsl = new ArrayList<>();
+        repository.findAll().forEach(rsl :: add);
+        return rsl;
     }
 
     public Collection<AccidentType> getAccidentTypes() {
-        return store.getAllTypes();
+        List<AccidentType> rsl = new ArrayList<>();
+        accidentTypeRepository.findAll().forEach(rsl :: add);
+        return rsl;
     }
 
     public Collection<Rule> getRules() {
-        return store.getAllRules();
+        List<Rule> rsl = new ArrayList<>();
+        ruleRepository.findAll().forEach(rsl :: add);
+        return rsl;
     }
 
     public Accident findById(int id) {
-        return store.findById(id);
+        return repository.findById(id).get();
     }
 
     public AccidentType findTypeById(int id) {
-        return store.findTypeById(id);
+        return accidentTypeRepository.findById(id).get();
     }
 
     public Set<Rule> findRules(String[] ids) {
-        return store.findRules(ids);
+        Set<Rule> rules = new HashSet<>();
+        Stream.of(ids).mapToInt(Integer::parseInt).forEach(id -> rules.add(ruleRepository.findById(id).get()));
+        return rules;
     }
 
 }

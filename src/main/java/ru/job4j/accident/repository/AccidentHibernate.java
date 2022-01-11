@@ -13,7 +13,6 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-@Repository
 public class AccidentHibernate implements Store {
     private final SessionFactory sf;
 
