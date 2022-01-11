@@ -9,6 +9,7 @@ import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.model.AccidentType;
 import ru.job4j.accident.model.Rule;
 
+import javax.transaction.Transactional;
 import java.sql.PreparedStatement;
 import java.util.Collection;
 import java.util.HashSet;
@@ -27,13 +28,14 @@ public class AccidentJdbcTemplate implements Store {
 
     @Override
     public Accident save(Accident accident) {
-        if (findById(accident.getId()) == null) {
+        if (accident.getId() == 0) {
             return create(accident);
         }
         return update(accident);
     }
 
-    private Accident create(Accident accident) {
+    @Transactional
+    Accident create(Accident accident) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         jdbc.update(connection -> {
             PreparedStatement st = connection.prepareStatement(
@@ -48,7 +50,8 @@ public class AccidentJdbcTemplate implements Store {
         return accident;
     }
 
-    private Accident update(Accident accident) {
+    @Transactional
+    Accident update(Accident accident) {
         jdbc.update("update accident set name = ?, description = ?, address = ?, accident_type_id = ? where id = ?",
                 accident.getName(),
                 accident.getDescription(),
