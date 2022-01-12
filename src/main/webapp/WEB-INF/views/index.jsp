@@ -17,6 +17,9 @@
   This is a lead paragraph. It stands out from regular paragraphs.
 </p>
 <div class="container" width="70%">
+    <div>
+        Login as : ${user.username}
+    </div>
     <table class="table">
       <thead>
       <tr>
