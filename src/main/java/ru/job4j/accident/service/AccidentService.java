@@ -7,6 +7,8 @@ import ru.job4j.accident.model.Rule;
 import ru.job4j.accident.repository.AccidentRepository;
 import ru.job4j.accident.repository.AccidentTypeRepository;
 import ru.job4j.accident.repository.RuleRepository;
+
+import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -23,7 +25,10 @@ public class AccidentService {
         this.accidentTypeRepository = accidentTypeRepository;
     }
 
-    public Accident save(Accident accident) {
+    @Transactional
+    public Accident save(Accident accident, String typeId, String[] rIds) {
+        accident.setType(findTypeById(Integer.parseInt(typeId)));
+        accident.setRules(findRules(rIds));
         repository.save(accident);
         return accident;
     }

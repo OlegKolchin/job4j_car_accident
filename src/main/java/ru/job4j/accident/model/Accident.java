@@ -19,7 +19,7 @@ public class Accident {
     @JoinColumn(name = "accident_type_id")
     private AccidentType type;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     private Set<Rule> rules;
 
     public Accident(int id, String name, String description, String address, AccidentType type, Set<Rule> rules) {
